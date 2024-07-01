@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import firebase from "../../firebase/config";
 import Usuario from "@/model/Usuario";
+import route from "next/router";
 
 interface AuthContextProps {
   usuario?: Usuario;
@@ -25,7 +26,10 @@ async function usuarioNormalizado(
 export function AuthProvider(props: any) {
   const [usuario, setUsuario] = useState<Usuario>();
 
-  async function loginGoogle() {}
+  async function loginGoogle() {
+    console.log("Login google...");
+    route.push("/");
+  }
 
   return (
     <AuthContext.Provider
