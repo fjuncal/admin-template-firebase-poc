@@ -1,11 +1,5 @@
 import MenuItem from "./MenuItem";
-import {
-  IconeCasa,
-  IconeAjustes,
-  IconeSino,
-  IconeSair,
-  IconeDieta,
-} from "../icons";
+import { IconeCasa, IconeAjustes, IconeSino, IconeSair } from "../icons";
 import Logo from "./Logo";
 import { useRouter } from "next/router";
 
@@ -32,7 +26,6 @@ export default function MenuLateral() {
         <MenuItem url="/" texto="Início" icone={IconeCasa} />
         <MenuItem url="/ajustes" texto="Ajustes" icone={IconeAjustes} />
         <MenuItem url="/notificacoes" texto="Notificações" icone={IconeSino} />
-        <MenuItem url="/dieta" texto="Dieta" icone={IconeDieta} />
       </ul>
       <ul className="">
         <MenuItem
