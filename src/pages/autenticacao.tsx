@@ -17,10 +17,8 @@ export default function Autenticacao() {
   function submeter() {
     if (modo === "login") {
       console.log("login");
-      exibirErro("Ocorreu um erro no login!");
     } else {
       console.log("cadastrar");
-      exibirErro("Ocorreu um erro no cadastro!");
     }
   }
 
