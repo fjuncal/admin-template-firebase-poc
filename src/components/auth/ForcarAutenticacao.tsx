@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Head from "next/head";
 import loading from "../../../public/images/loading.gif";
 import useAuth from "@/data/hook/useAuth";
 import router from "next/router";
@@ -6,7 +7,22 @@ import router from "next/router";
 export default function ForcarAutenticacao(props: any) {
   const { usuario, carregando } = useAuth();
   function renderizarConteudo() {
-    return <>{props.children}</>;
+    return (
+      <>
+        <Head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                if(!document.cookie.includes("admin-template-firebase-auth")){
+                    window.location.href = "/autenticacao"
+                }
+            `,
+            }}
+          ></script>
+        </Head>
+        {props.children}
+      </>
+    );
   }
 
   function renderizarCarregando() {
