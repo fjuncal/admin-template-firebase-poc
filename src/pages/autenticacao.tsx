@@ -4,10 +4,12 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import botafogoCachorro from "../../assets/cachorro-botafogo.jpg";
 import euENat from "../../assets/eu-natinha.jpeg";
+import { IconeWarning } from "@/components/icons";
 
 export default function Autenticacao() {
   const router = useRouter();
 
+  const [erro, setErro] = useState("");
   const [modo, setModo] = useState<"login" | "cadastro">("login");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -15,10 +17,18 @@ export default function Autenticacao() {
   function submeter() {
     if (modo === "login") {
       console.log("login");
+      exibirErro("Ocorreu um erro no login!");
     } else {
       console.log("cadastrar");
+      exibirErro("Ocorreu um erro no cadastro!");
     }
   }
+
+  function exibirErro(msg: string, tempoEmSegundos = 5) {
+    setErro(msg);
+    setTimeout(() => setErro(""), tempoEmSegundos * 1000);
+  }
+
   return (
     <div className="flex h-screen items-center justify-center">
       <div className={`hidden md:block md:w-1/2 lg:2/3`}>
@@ -38,6 +48,17 @@ export default function Autenticacao() {
             ? "Bem vindo ao Nat Love S2"
             : "Cadastre-se na Plataforma"}
         </h1>
+        {erro ? (
+          <div
+            className={` flex items-center bg-red-400 text-white py-3 px-5 my-2 border border-red-700 rounded-lg`}
+          >
+            {IconeWarning()}
+            <span className="ml-3">{erro}</span>
+          </div>
+        ) : (
+          false
+        )}
+
         <AuthInput
           label="Email"
           tipo="email"
@@ -53,7 +74,7 @@ export default function Autenticacao() {
           obrigatorio
         />
         <button
-          onClick={() => router.push("/")}
+          onClick={submeter}
           className={`
         w-full bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg px-4 py-3 mt-6`}
         >
