@@ -79,9 +79,11 @@ export function AuthProvider(props: any) {
   }
 
   useEffect(() => {
-    //passando uma função quando o id do token for trocado
-    const cancelar = firebase.auth().onIdTokenChanged(configurarSessao);
-    return () => cancelar();
+    if (Cookies.get("admin-template-firebase-auth")) {
+      //passando uma função quando o id do token for trocado
+      const cancelar = firebase.auth().onIdTokenChanged(configurarSessao);
+      return () => cancelar();
+    }
   }, []);
 
   return (
