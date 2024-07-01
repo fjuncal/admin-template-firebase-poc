@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 interface AuthContextProps {
   usuario?: Usuario;
   loginGoogle?: () => Promise<void>;
+  logout?: () => Promise<void>;
 }
 const AuthContext = createContext<AuthContextProps>({});
 
@@ -88,6 +89,7 @@ export function AuthProvider(props: any) {
       value={{
         usuario,
         loginGoogle,
+        logout,
       }}
     >
       {props.children}
