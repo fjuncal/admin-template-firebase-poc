@@ -84,6 +84,8 @@ export function AuthProvider(props: any) {
       //passando uma função quando o id do token for trocado
       const cancelar = firebase.auth().onIdTokenChanged(configurarSessao);
       return () => cancelar();
+    } else {
+      setCarregando(false);
     }
   }, []);
 
