@@ -27,8 +27,15 @@ export function AuthProvider(props: any) {
   const [usuario, setUsuario] = useState<Usuario>();
 
   async function loginGoogle() {
-    console.log("Login google...");
-    route.push("/");
+    const resp = await firebase
+      .auth()
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider());
+
+    if (resp.user?.email) {
+      const usuario = await usuarioNormalizado(resp.user);
+      setUsuario(usuario);
+      route.push("/");
+    }
   }
 
   return (
