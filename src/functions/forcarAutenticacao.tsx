@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Head from "next/head";
-import loading from "../../../public/images/loading.gif";
+import loading from "../../public/images/loading.gif";
 import useAuth from "@/data/hook/useAuth";
 import router from "next/router";
 
-export default function ForcarAutenticacao(props: any) {
+export default function forcarAutenticacao(jsx: any) {
   const { usuario, carregando } = useAuth();
   function renderizarConteudo() {
     return (
@@ -20,7 +20,7 @@ export default function ForcarAutenticacao(props: any) {
             }}
           ></script>
         </Head>
-        {props.children}
+        {jsx}
       </>
     );
   }
