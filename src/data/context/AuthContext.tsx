@@ -8,6 +8,7 @@ interface AuthContextProps {
   usuario?: Usuario;
   carregando?: Boolean;
   login?: (email: string, senha: string) => Promise<void>;
+  cadastrar?: (email: string, senha: string) => Promise<void>;
   loginGoogle?: () => Promise<void>;
   logout?: () => Promise<void>;
 }
@@ -124,6 +125,7 @@ export function AuthProvider(props: any) {
         carregando,
         loginGoogle,
         login,
+        cadastrar,
         logout,
       }}
     >
